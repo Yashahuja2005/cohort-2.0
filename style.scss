@@ -7,45 +7,108 @@ html,
 body{
     height: 100%;
     width: 100%;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: rgb(241, 237, 237);
+    font-size: clamp(14px, 1.5vw, 18px);
 }
-@mixin flexCenter(){
-    display: flex;
-    justify-content: center;
-    align-items: center;
+body{
+    background-color: black;
 }
-main{
-    height: 100%;
-    width: 100%;
-    display: flex; 
-    gap: 10px;
-    section {
-        background-size: cover;
-        background-position: center;
-        height: 100%;
-        flex-grow: 1;
-        
-    }
-    
-    section:hover{
-        flex-grow: 2;
-        transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
-        cursor: pointer;
-    }
 
-    section:nth-child(1){
-        background-image: url(https://i.pinimg.com/736x/be/ce/7e/bece7e7b4a13e076910e429bfa4839fe.jpg);
-    
+@mixin flex-column($gap: 0rem){
+    display: flex;
+    flex-direction: column;
+    gap: $gap;
+}
+
+section{
+    max-width: 1900px;
+}
+
+main{
+    width: 100%;
+    @include flex-column();
+    align-items: center;
+    justify-content: center;
+
+    section{
+        width: 100%;
+        @include flex-column(2rem);
+        padding: 1rem;
+
+        .top{
+            width: 100%;
+
+            img{
+                width: 100%;
+                border-radius: 10px;
+            }
+        }
+        .bottom{
+            background-color: #292929;
+            border-radius: 10px;
+            padding: 1.6rem;
+            @include flex-column(3rem);
+
+            .text{
+                @include flex-column(0.7rem);
+                
+                h1{
+                    font-weight: 200;
+                    font-size: 3rem;
+                    text-transform: uppercase;
+                }
+
+                p{
+                    font-weight: 300;
+                    opacity: 0.7;
+                    line-height: 1.6;
+                    font-size: 1.5rem;
+
+                }
+                button{
+                    width: fit-content;
+                    border: none;
+                    outline: none;
+                    padding: 0.7rem 1rem;
+                    text-decoration: none;
+                    background-color: transparent;
+                    color: azure;
+                    cursor: pointer;
+
+                }
+            }
+        }
     }
-    section:nth-child(2) {
-        background-image: url(https://i.pinimg.com/736x/9f/48/dc/9f48dc507e50636024a0ab19d0f69a56.jpg);
-    }
-    section:nth-child(3) {
-        background-image: url(https://i.pinimg.com/736x/4e/ce/ea/4eceea8d712bb1e3ca3e7cedf750a114.jpg);
-    }
-    section:nth-child(4){
-        background-image: url(https://i.pinimg.com/736x/97/9b/c9/979bc9ad3242b29d1ea730010a464a23.jpg);
-    }
-    section:nth-child(5){
-        background-image: url(https://i.pinimg.com/736x/98/ce/be/98cebe5936101da999d59126f9bf44ee.jpg);
+}
+
+@media (min-width:850px){
+    main{
+        
+        
+        section{
+            flex-direction: row;
+            padding: 1rem 4rem;
+
+            .top,
+            .bottom{
+                width: 50%;
+            }
+
+            .bottom{
+                justify-content: space-between;
+                padding: 3rem;
+            }
+            .text{
+                gap: 1.5rem;
+                h1{
+                    font-size: 3.5rem;
+                }
+
+                p{
+                    font-size: 1rem;
+                };
+            }
+        }
     }
 }
